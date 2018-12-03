@@ -1,0 +1,64 @@
+﻿@model List<PizzaTorium_complete.Models.Ingredients>
+
+@{
+    ViewBag.Title = "Design";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Design</h2>
+
+
+@using (Html.BeginForm())
+{
+    <div style="text-align: center;">
+        <p style="font-size: 15px !important;">Select Pizza Size</p>
+        @Html.DropDownList("PizzaSize",null,new { @class = "sizeSelect" })
+    </div>
+    <br/>
+    <br />
+    <br />
+
+    <div>
+        <table align="center" class="table">
+            <tr>
+                <th>
+                    Ingredient
+                </th>
+                <th>
+                    Cost
+                </th>
+                <th>
+                    Selected
+                </th>
+            </tr>
+
+            @for (var i = 0; i < Model.Count(); i++)
+            {
+                <tr>
+                    <td>
+                        @Html.HiddenFor(it => it[i].Id)
+                        @Html.HiddenFor(it => it[i].Name)
+                        @Html.HiddenFor(it => it[i].Cost)
+                        @Html.DisplayFor(it => it[i].Name)
+                    </td>
+                    <td>
+                        R @Html.DisplayFor(it => it[i].Cost)
+                    </td>
+                    <td>
+                        @Html.CheckBoxFor(it => it[i].Checked, new { @class = "checkBox" })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+
+    <div style="text-align: center;">
+        <input class="btn1 btn-blue btn-8c" id="Submit1" type="submit" value="Confirm" />
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,96 @@
+﻿@using PizzaTorium_complete.Models
+@model PizzaTorium_complete.Models.Orders
+
+
+
+@{
+    ViewBag.Title = "Finalize";
+
+    ViewBag.Size = Session["pizzaSize"] as string;
+
+    var ing = Session["ingredients"] as List<Ingredients>;
+
+    Users myUser = ViewBag.user as Users;
+}
+
+<h2>Finalize Order</h2>
+<h3>Pizza Breakdown</h3>
+<table align="center" class="table">
+    <tr>
+        <td>
+            <strong>
+                PizzaSize
+            </strong>
+        </td>
+        <td>
+            @ViewBag.Size
+        </td>
+    </tr>
+    <tr>
+        <th>
+            Ingredient
+        </th>
+        <th>
+            Cost
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in ing)
+    {
+        <tr>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                R @Math.Round(item.Cost, 2)
+            </td>
+        </tr>
+    }
+    <tr>
+        <td>
+            <strong>
+                Total:
+            </strong>
+        </td>
+        <td>
+            R @Math.Round(ViewBag.Total, 2)
+        </td>
+    </tr>
+</table>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h3>Delivery Info</h3>
+        <div class="form-group">
+            @Html.HiddenFor(model => model.User)
+            @Html.HiddenFor(model => model.Cost)
+            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Area, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Areas", null, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.PayMethod, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Payment", null, new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: center;">
+        <input class="btn1 btn-green btn-8c" id="Submit1" type="submit" value="Place Order" />
+    </div>
+
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
