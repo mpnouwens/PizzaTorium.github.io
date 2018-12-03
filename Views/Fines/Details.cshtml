@@ -1,0 +1,50 @@
+﻿@model LibraryManagementSystem.Models.Fine
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details of Fine</h2>
+
+<div>
+    <h4>Fine</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SeverityOfFine)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SeverityOfFine)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Staff.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Staff.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Student.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Student.FirstName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.FineID_PK }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,26 @@
+﻿@model LibraryManagementSystem.Models.Publisher
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details of Publisher</h2>
+
+<div>
+    <h4>Publisher</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NameOfPublisher)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameOfPublisher)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PublisherID_PK }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

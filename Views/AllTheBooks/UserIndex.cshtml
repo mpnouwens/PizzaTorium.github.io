@@ -1,0 +1,188 @@
+﻿@model IEnumerable<LibraryManagementSystem.Models.AllTheBook>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>All Books</h2>
+
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+
+            <div class="col-sm-4 ">
+                <div class="card" style="width: 18rem; margin: 5px; padding: 5px;">
+                    <h5>@Html.DisplayFor(modelItem => item.Name)</h5>
+                    <img class="card-img-top" src="@Html.DisplayFor(modelItem => item.Image)" height="300" width="200" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title text-center"> @Html.DisplayFor(modelItem => item.Author.NameOfAuthor) </h5>
+                        <div class="card-text">
+                            <p class="text-center">@Html.DisplayFor(modelItem => item.Description)</p>
+                            <ul class="text-center">
+                                <li>Print Length: @Html.DisplayFor(modelItem => item.PrintLength)</li>
+                                <li>Publisher: @Html.DisplayFor(modelItem => item.Publisher.NameOfPublisher)</li>
+                                <li>Age For:  @Html.DisplayFor(modelItem => item.InterestedAge)</li>
+                                <li></li>
+                            </ul>
+
+                        </div>
+                        @*<a href="#" class="btn btn btn-outline-primary">Go somewhere</a>*@
+                        <button type="button" class="btn btn-success btn-lg center-block " data-toggle="modal" data-target="#myModal">Details</button>
+                        <br />
+                        @Html.ActionLink("Add +", "CreateUsers", "BooksIssueds", item.BookID_PK, new { @class = "btn btn-warning btn-lg center-block" })
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">@Html.DisplayFor(modelItem => item.Name)</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Some text in the modal.</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+  
+                </div>
+             
+            </div>
+
+
+        }
+    </div>
+</div>
+
+@*<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+
+            <div class="col-sm-3 ">
+                <div class="card" style="width: 18rem;">
+                    <h5>@Html.DisplayFor(modelItem => item.Name)</h5>
+                    <img class="card-img-top" src="@Html.DisplayFor(modelItem => item.Image)" height="300" width="200" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title"> @Html.DisplayFor(modelItem => item.Author.NameOfAuthor) </h5>
+                        <div class="card-text">
+                            <p>@Html.DisplayFor(modelItem => item.Category.NameOfCategory)</p>
+                            <p>@Html.DisplayFor(modelItem => item.Description)</p>
+                            <p>Print Length: @Html.DisplayFor(modelItem => item.PrintLength)</p>
+                            <p>Publisher: @Html.DisplayFor(modelItem => item.Publisher.NameOfPublisher)</p>
+                            <p>Age For:  @Html.DisplayFor(modelItem => item.InterestedAge)</p>
+                 
+
+
+                            
+                        </div>
+                        @Html.ActionLink("Add book", "CreateUsers", "BooksIssueds",  item.BookID_PK, new { @class = "btn btn-warning" })
+
+                        <button type="button" class="btn btn-info " data-toggle="modal" data-target="#myModal">Details</button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">@Html.DisplayFor(modelItem => item.Name)</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Some text in the modal.</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+ 
+                </div>
+            </div>
+
+
+        }
+    </div>
+</div>*@
+
+@*<table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ISBN)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrintLength)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InterestedAge)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Author.NameOfAuthor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category.NameOfCategory)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Publisher.NameOfPublisher)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ISBN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrintLength)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InterestedAge)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author.NameOfAuthor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.NameOfCategory)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Publisher.NameOfPublisher)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.BookID_PK }) |
+                @Html.ActionLink("Details", "Details", new { id=item.BookID_PK }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.BookID_PK })
+            </td>
+        </tr>
+    }
+
+    </table>*@
